@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Three.Services;
@@ -8,12 +9,20 @@ namespace Three
 {
     public class Startup
     {
+        private readonly IConfiguration _configuration;
+
+        public Startup(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
             services.AddSingleton<IClock, UtcClock>();
             services.AddSingleton<IDepartmentService, DepartmentService>();
             services.AddSingleton<IEmployeeService, EmployeeService>();
+
+            services.Configure<ThreeOptinos>(_configuration.GetSection("Three"));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

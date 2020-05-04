@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
 using Three.Models;
 using Three.Services;
@@ -8,10 +9,12 @@ namespace Three.Controllers
     public class DepartmentController : Controller
     {
         private readonly IDepartmentService _departmentService;
+        private readonly IOptions<ThreeOptinos> _threeOptinos;
 
-        public DepartmentController(IDepartmentService departmentService)
+        public DepartmentController(IDepartmentService departmentService, IOptions<ThreeOptinos> threeOptinos)
         {
-            this._departmentService = departmentService;
+            _departmentService = departmentService;
+            _threeOptinos = threeOptinos;
         }
 
         public async Task<IActionResult> Index()

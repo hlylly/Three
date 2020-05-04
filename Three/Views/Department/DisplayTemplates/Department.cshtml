@@ -1,7 +1,16 @@
 ﻿@model Three.Models.Department
+@inject Microsoft.Extensions.Options.IOptions<Three.ThreeOptinos> options
 
 <tr>
-    <td>@Model.Name</td>
+    @if (Model.EmployeeCount > options.Value.BoldDepartmentEmployeeCountThreshold)
+    {
+        <td><strong>@Model.Name</strong></td>
+    }
+    else
+    {
+        <td>@Model.Name</td>
+    }
+
     <td>@Model.Location</td>
     <td>@Model.EmployeeCount</td>
 
