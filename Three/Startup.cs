@@ -35,7 +35,7 @@ namespace Three
             {
                 endpoints.MapControllerRoute(
                     "default",
-                    "{controller=Home}/{action=Index}/{id?}");
+                    "{controller=Department}/{action=Index}/{id?}");
             });
         }
     }
