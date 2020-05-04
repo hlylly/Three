@@ -16,7 +16,6 @@ namespace Three.Services
             _employees.Add(new Employee { Id = 3, DepartmentId = 1, FirstName = "Mariah", LastName = "Carey", Gender = Gender.女 });
             _employees.Add(new Employee { Id = 4, DepartmentId = 2, FirstName = "Axl", LastName = "Rose", Gender = Gender.男 });
             _employees.Add(new Employee { Id = 5, DepartmentId = 2, FirstName = "Kate", LastName = "Winslet", Gender = Gender.女 });
-            _employees.Add(new Employee { Id = 5, DepartmentId = 2, FirstName = "Kate", LastName = "Winslet", Gender = Gender.女 });
             _employees.Add(new Employee { Id = 6, DepartmentId = 3, FirstName = "Rob", LastName = "Thomas", Gender = Gender.男 });
             _employees.Add(new Employee { Id = 7, DepartmentId = 3, FirstName = "Avril", LastName = "Lavigne", Gender = Gender.女 });
             _employees.Add(new Employee { Id = 8, DepartmentId = 3, FirstName = "Katy", LastName = "Perry", Gender = Gender.女 });
@@ -32,7 +31,7 @@ namespace Three.Services
 
         public Task<IEnumerable<Employee>> GetByDepartmentId(int departmentId)
         {
-            return Task.Run(() => _employees.AsEnumerable());
+            return Task.Run(() => _employees.Where(x => x.DepartmentId == departmentId));
         }
 
         public Task<Employee> Fire(int id)
